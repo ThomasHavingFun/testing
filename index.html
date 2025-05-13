@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HES 207 Final Interactive Quiz</title>
+  <title>HES 207 Final Quiz (Local Images)</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
     .question { margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1);}
@@ -38,60 +38,26 @@
   </style>
 </head>
 <body>
-  <h1>HES 207 Final Practice Quiz (Sample)</h1>
+  <h1>HES 207 Final Practice Quiz (Test Bundle)</h1>
   <div id="quiz">
-    
     <div class="question" data-answer="b">
       <h2>1. Which of the following muscles is the primary agonist during shoulder abduction?</h2>
-      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Deltoid_muscle.png/800px-Deltoid_muscle.png" alt="Diagram for Question 1">
+      <img class="diagram" src="deltoid.png" alt="Deltoid Muscle Diagram">
       <div class="options">
-    <button onclick="checkAnswer(this, 'a')">a) Pectoralis major</button><button onclick="checkAnswer(this, 'b')">b) Deltoid</button><button onclick="checkAnswer(this, 'c')">c) Latissimus dorsi</button><button onclick="checkAnswer(this, 'd')">d) Teres major</button>
+        <button onclick="checkAnswer(this, 'a')">a) Pectoralis major</button>
+        <button onclick="checkAnswer(this, 'b')">b) Deltoid</button>
+        <button onclick="checkAnswer(this, 'c')">c) Latissimus dorsi</button>
+        <button onclick="checkAnswer(this, 'd')">d) Teres major</button>
       </div>
       <div class="feedback"></div>
     </div>
-    
-    <div class="question" data-answer="c">
-      <h2>2. Which joint action occurs during the downward phase of a bicep curl?</h2>
-      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Biceps_brachii.png/800px-Biceps_brachii.png" alt="Diagram for Question 2">
-      <div class="options">
-    <button onclick="checkAnswer(this, 'a')">a) Elbow flexion, concentric</button><button onclick="checkAnswer(this, 'b')">b) Elbow extension, concentric</button><button onclick="checkAnswer(this, 'c')">c) Elbow flexion, eccentric</button><button onclick="checkAnswer(this, 'd')">d) Elbow extension, eccentric</button>
-      </div>
-      <div class="feedback"></div>
-    </div>
-    
-    <div class="question" data-answer="b">
-      <h2>3. Which muscle is primarily responsible for forearm supination?</h2>
-      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Supination_and_pronation.png/640px-Supination_and_pronation.png" alt="Diagram for Question 3">
-      <div class="options">
-    <button onclick="checkAnswer(this, 'a')">a) Pronator teres</button><button onclick="checkAnswer(this, 'b')">b) Biceps brachii</button><button onclick="checkAnswer(this, 'c')">c) Triceps brachii</button><button onclick="checkAnswer(this, 'd')">d) Brachioradialis</button>
-      </div>
-      <div class="feedback"></div>
-    </div>
-    
-    <div class="question" data-answer="c">
-      <h2>4. Which of the following muscles is active during scapular protraction?</h2>
-      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Serratus_anterior.png/800px-Serratus_anterior.png" alt="Diagram for Question 4">
-      <div class="options">
-    <button onclick="checkAnswer(this, 'a')">a) Trapezius (middle)</button><button onclick="checkAnswer(this, 'b')">b) Rhomboids</button><button onclick="checkAnswer(this, 'c')">c) Serratus anterior</button><button onclick="checkAnswer(this, 'd')">d) Levator scapulae</button>
-      </div>
-      <div class="feedback"></div>
-    </div>
-    
-    <div class="question" data-answer="c">
-      <h2>5. What type of contraction is occurring in the quadriceps during the descent phase of a squat?</h2>
-      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Squat_exercise.png/800px-Squat_exercise.png" alt="Diagram for Question 5">
-      <div class="options">
-    <button onclick="checkAnswer(this, 'a')">a) Concentric</button><button onclick="checkAnswer(this, 'b')">b) Isometric</button><button onclick="checkAnswer(this, 'c')">c) Eccentric</button><button onclick="checkAnswer(this, 'd')">d) Relaxed</button>
-      </div>
-      <div class="feedback"></div>
-    </div>
-    
   </div>
-  <div class="score" id="score">Score: 0 / 5</div>
+
+  <div class="score" id="score">Score: 0 / 1</div>
   <button class="reset-btn" onclick="resetQuiz()">Reset Quiz</button>
 
   <script>
-    let totalQuestions = 5;
+    let totalQuestions = 1;
     let correctAnswers = 0;
 
     function checkAnswer(button, selected) {
@@ -123,7 +89,7 @@
     }
 
     function updateScore() {
-      document.getElementById("score").textContent = `Score: ${correctAnswers} / 5`;
+      document.getElementById("score").textContent = `Score: ${correctAnswers} / ${totalQuestions}`;
     }
 
     function resetQuiz() {
