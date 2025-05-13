@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HES 207 Final Interactive Quiz</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f4; }
+    .question { margin-bottom: 20px; padding: 15px; background: #fff; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1);}
+    .options button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #ccc;
+      cursor: pointer;
+    }
+    .options button.correct { background-color: #c8f7c5; border-color: #27ae60; }
+    .options button.incorrect { background-color: #f7c5c5; border-color: #e74c3c; }
+    .feedback { margin-top: 10px; font-weight: bold; }
+    .score { font-size: 20px; margin-top: 30px; }
+    .reset-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    img.diagram {
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>HES 207 Final Practice Quiz (Sample)</h1>
+  <div id="quiz">
+    
+    <div class="question" data-answer="b">
+      <h2>1. Which of the following muscles is the primary agonist during shoulder abduction?</h2>
+      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Deltoid_muscle.png/800px-Deltoid_muscle.png" alt="Diagram for Question 1">
+      <div class="options">
+    <button onclick="checkAnswer(this, 'a')">a) Pectoralis major</button><button onclick="checkAnswer(this, 'b')">b) Deltoid</button><button onclick="checkAnswer(this, 'c')">c) Latissimus dorsi</button><button onclick="checkAnswer(this, 'd')">d) Teres major</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question" data-answer="c">
+      <h2>2. Which joint action occurs during the downward phase of a bicep curl?</h2>
+      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Biceps_brachii.png/800px-Biceps_brachii.png" alt="Diagram for Question 2">
+      <div class="options">
+    <button onclick="checkAnswer(this, 'a')">a) Elbow flexion, concentric</button><button onclick="checkAnswer(this, 'b')">b) Elbow extension, concentric</button><button onclick="checkAnswer(this, 'c')">c) Elbow flexion, eccentric</button><button onclick="checkAnswer(this, 'd')">d) Elbow extension, eccentric</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question" data-answer="b">
+      <h2>3. Which muscle is primarily responsible for forearm supination?</h2>
+      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Supination_and_pronation.png/640px-Supination_and_pronation.png" alt="Diagram for Question 3">
+      <div class="options">
+    <button onclick="checkAnswer(this, 'a')">a) Pronator teres</button><button onclick="checkAnswer(this, 'b')">b) Biceps brachii</button><button onclick="checkAnswer(this, 'c')">c) Triceps brachii</button><button onclick="checkAnswer(this, 'd')">d) Brachioradialis</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question" data-answer="c">
+      <h2>4. Which of the following muscles is active during scapular protraction?</h2>
+      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Serratus_anterior.png/800px-Serratus_anterior.png" alt="Diagram for Question 4">
+      <div class="options">
+    <button onclick="checkAnswer(this, 'a')">a) Trapezius (middle)</button><button onclick="checkAnswer(this, 'b')">b) Rhomboids</button><button onclick="checkAnswer(this, 'c')">c) Serratus anterior</button><button onclick="checkAnswer(this, 'd')">d) Levator scapulae</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question" data-answer="c">
+      <h2>5. What type of contraction is occurring in the quadriceps during the descent phase of a squat?</h2>
+      <img class="diagram" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Squat_exercise.png/800px-Squat_exercise.png" alt="Diagram for Question 5">
+      <div class="options">
+    <button onclick="checkAnswer(this, 'a')">a) Concentric</button><button onclick="checkAnswer(this, 'b')">b) Isometric</button><button onclick="checkAnswer(this, 'c')">c) Eccentric</button><button onclick="checkAnswer(this, 'd')">d) Relaxed</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+    
+  </div>
+  <div class="score" id="score">Score: 0 / 5</div>
+  <button class="reset-btn" onclick="resetQuiz()">Reset Quiz</button>
+
+  <script>
+    let totalQuestions = 5;
+    let correctAnswers = 0;
+
+    function checkAnswer(button, selected) {
+      const questionDiv = button.closest(".question");
+      const correct = questionDiv.getAttribute("data-answer");
+      const buttons = questionDiv.querySelectorAll("button");
+      const feedback = questionDiv.querySelector(".feedback");
+
+      if (questionDiv.classList.contains("answered")) return;
+
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (selected === correct) {
+        button.classList.add("correct");
+        feedback.textContent = "✅ Correct!";
+        correctAnswers++;
+      } else {
+        button.classList.add("incorrect");
+        feedback.textContent = "❌ Incorrect. Try reviewing this concept.";
+        buttons.forEach(btn => {
+          if (btn.textContent.trim().toLowerCase().startsWith(correct)) {
+            btn.classList.add("correct");
+          }
+        });
+      }
+
+      questionDiv.classList.add("answered");
+      updateScore();
+    }
+
+    function updateScore() {
+      document.getElementById("score").textContent = `Score: ${correctAnswers} / 5`;
+    }
+
+    function resetQuiz() {
+      correctAnswers = 0;
+      document.querySelectorAll(".question").forEach(q => {
+        q.classList.remove("answered");
+        q.querySelector(".feedback").textContent = "";
+        q.querySelectorAll("button").forEach(btn => {
+          btn.disabled = false;
+          btn.classList.remove("correct", "incorrect");
+        });
+      });
+      updateScore();
+    }
+  </script>
+</body>
+</html>
